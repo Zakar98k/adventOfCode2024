@@ -38,7 +38,7 @@ void SearchInputForInstructions(
 }
 
 int main() {
-    std::string file_name = "day3TestInput.txt";
+    std::string file_name = "day3Input.txt";
     std::string content = ReadDataFromFile(file_name);
     std::smatch match;
     std::regex pattern("mul\\((\\d{1,3}),(\\d{1,3})\\)");
