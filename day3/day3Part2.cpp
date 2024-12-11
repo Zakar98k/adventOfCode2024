@@ -21,7 +21,7 @@ std::string ReadDataFromFile(std::string& file_name) {
     return buffer.str();
 }
 
-void GetProducts(
+void PopulateProducts(
     std::string& content, 
     std::smatch& match, 
     std::regex& pattern, 
@@ -29,8 +29,6 @@ void GetProducts(
 ) {
     bool can_continue = true;
     while (std::regex_search(content, match, pattern)) {
-        // Calculate mul(X,Y)
-
         std::string prefix = match.prefix().str();
         std::smatch continue_match;
         std::regex continue_pattern("do\\(\\)|don\\'t\\(\\)");
@@ -41,7 +39,7 @@ void GetProducts(
         std::smatch last_match;
         bool found_match = false;
 
-        // Iterate through all matches in the prefix
+        // Iterate through all the dos and donts we matched
         while (iter != end) {
             last_match = *iter;  // Capture the current match
             ++iter;              // Move to the next match
@@ -49,8 +47,6 @@ void GetProducts(
         }
 
         if (found_match) {
-            // If we found a match, print the last one
-
             // Logic to decide if we continue
             if (last_match.str() == "do()") {
                 can_continue = true;
@@ -58,7 +54,6 @@ void GetProducts(
                 can_continue = false;
             }
         } 
-        // If we can continue, calculate the product and push to products
         if (can_continue) {
             products.push_back((std::stoi(match[1]) * std::stoi(match[2])));
         }
@@ -75,7 +70,7 @@ int main() {
     std::regex pattern("mul\\((\\d{1,3}),(\\d{1,3})\\)"); // Matches mul(x,y)
     std::vector<int> products; // Will sum these up later 
 
-    GetProducts(content, match, pattern, products);
+    PopulateProducts(content, match, pattern, products);
 
     std::cout << std::accumulate(products.begin(), products.end(), 0) << "\n";
 
