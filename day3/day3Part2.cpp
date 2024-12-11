@@ -21,7 +21,7 @@ std::string ReadDataFromFile(std::string& file_name) {
     return buffer.str();
 }
 
-void SearchInputForInstructions(
+void GetProducts(
     std::string& content, 
     std::smatch& match, 
     std::regex& pattern, 
@@ -41,10 +41,11 @@ int main() {
     std::string file_name = "day3Input.txt";
     std::string content = ReadDataFromFile(file_name);
     std::smatch match;
-    std::regex pattern("mul\\((\\d{1,3}),(\\d{1,3})\\)");
+    std::regex pattern("mul\\((\\d{1,3}),(\\d{1,3})\\)"); // Matches mul(x,y)
     std::vector<int> products; // Will sum these up later 
 
-    SearchInputForInstructions(content, match, pattern, products);
+    GetProducts(content, match, pattern, products);
+
     std::cout << std::accumulate(products.begin(), products.end(), 0) << "\n";
 
     return 0;
