@@ -27,14 +27,45 @@ void GetProducts(
     std::regex& pattern, 
     std::vector<int>& products
 ) {
-    while (std::regex_search (content, match, pattern)) {
-        // for (auto m : match) std::cout << m << " ";
+    bool can_continue = true;
+    while (std::regex_search(content, match, pattern)) {
         // Calculate mul(X,Y)
-        products.push_back((std::stoi(match[1]) * std::stoi(match[2]))); 
-        // std::cout << '\n';
+
+        std::string prefix = match.prefix().str();
+        std::smatch continue_match;
+        std::regex continue_pattern("do\\(\\)|don\\'t\\(\\)");
+
+        std::sregex_iterator iter(prefix.begin(), prefix.end(), continue_pattern);
+        std::sregex_iterator end;
+
+        std::smatch last_match;
+        bool found_match = false;
+
+        // Iterate through all matches in the prefix
+        while (iter != end) {
+            last_match = *iter;  // Capture the current match
+            ++iter;              // Move to the next match
+            found_match = true;  // We found at least one match
+        }
+
+        if (found_match) {
+            // If we found a match, print the last one
+
+            // Logic to decide if we continue
+            if (last_match.str() == "do()") {
+                can_continue = true;
+            } else if (last_match.str() == "don't()") {
+                can_continue = false;
+            }
+        } 
+        // If we can continue, calculate the product and push to products
+        if (can_continue) {
+            products.push_back((std::stoi(match[1]) * std::stoi(match[2])));
+        }
+
+        // Update content for the next iteration
         content = match.suffix().str();
     }
-
 }
 
 int main() {
