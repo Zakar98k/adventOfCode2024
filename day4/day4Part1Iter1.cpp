@@ -1,3 +1,4 @@
+// This iteration don't damn work lol... I thought I could do some wacky stuff
 #include <iostream>
 #include <string>
 #include <vector>
@@ -54,9 +55,10 @@ void CountXmasSubWords(StringVector& sub_words, int& count) {
     std::cout << "diagonal 1: " << diagonal << "\n";
     diagonal.clear();
 
-    for (int i = sub_words.size() -1; i != 0; i--) {
-        diagonal += sub_words[i][i];
-    }
+    diagonal += sub_words[0][3];
+    diagonal += sub_words[1][2];
+    diagonal += sub_words[2][1];
+    diagonal += sub_words[3][0];
     if (diagonal == "XMAS" || diagonal == "SAMX")
         count++;
     std::cout << "diagonal 2: " << diagonal << "\n";
@@ -65,9 +67,9 @@ void CountXmasSubWords(StringVector& sub_words, int& count) {
 
 int CountXmas(StringVector& words) {
     int count = 0;
-    for (int i = 0; i < words.size() - 4; ++i) {
+    for (int i = 0; i < words.size() - 3; i++) {
         // std::cout << "line: " << i << "\n";
-        for (int j = 0; j < words[i].size() - 4; ++j) {
+        for (int j = 0; j < words[i].size() - 3; ++j) {
             StringVector sub_words;
             for (int k = i; k < i + 4; ++k) {
                 sub_words.emplace_back(words[k], j, 4);
