@@ -20,6 +20,16 @@ void ReadInputToVector(std::string& file_name, StringVector& words) {
     }
 }
 
+void CountXmasSubWords(StringVector& sub_words, int& count) {
+    // Count horizontal
+    for (auto& sub_word : sub_words) {
+        if (sub_word == "XMAS" || sub_word == "SAMX")
+            count++;
+    }
+
+    
+}
+
 int CountXmas(StringVector& words) {
     int count = 0;
     for (int i = 0; i < words.size() - 4; ++i) {
@@ -34,6 +44,8 @@ int CountXmas(StringVector& words) {
                 "AMXS",
                 "MSAM",
                 "XMAS" } */
+            CountXmasSubWords(sub_words, count);
+
             for (const auto& s : sub_words) {
                 std::cout << s << "\n";
             }
@@ -45,16 +57,14 @@ int CountXmas(StringVector& words) {
     return count;
 }
 
-void IterateStringVector(StringVector& vec) {
-
-}
-
 int main() {
     std::string file_name = "day4TestInput.txt";
     StringVector words;
 
     ReadInputToVector(file_name, words);
     int count = CountXmas(words);
+
+    std::cout << count << "\n";
 
     return 0;
 }
