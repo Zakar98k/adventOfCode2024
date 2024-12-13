@@ -27,13 +27,23 @@ void CountXmasSubWords(StringVector& sub_words, int& count) {
             count++;
     }
 
+    // Count vertical
+    for (int i = 0; i < sub_words[0].size(); ++i) {
+        std::string vertical;
+        for (int j = 0; j < sub_words.size(); ++j) {
+            vertical += sub_words[j][i];
+        }
+        if (vertical == "XMAS" || vertical == "SAMX")
+            count++;
+        vertical.clear();
+    }
     
 }
 
 int CountXmas(StringVector& words) {
     int count = 0;
     for (int i = 0; i < words.size() - 4; ++i) {
-        std::cout << "line: " << i << "\n";
+        // std::cout << "line: " << i << "\n";
         for (int j = 0; j < words[i].size() - 4; ++j) {
             StringVector sub_words;
             for (int k = i; k < i + 4; ++k) {
