@@ -22,12 +22,16 @@ void ReadInputToVector(std::string& file_name, StringVector& words) {
 
 void CountXmasSubWords(StringVector& sub_words, int& count) {
     // Count horizontal
+    std::cout << "Horizontal: "; 
     for (auto& sub_word : sub_words) {
+        std::cout << sub_word << " ";
         if (sub_word == "XMAS" || sub_word == "SAMX")
             count++;
     }
+    std::cout << "\n"; 
 
     // Count vertical
+    std::cout << "Vertical: ";
     for (int i = 0; i < sub_words[0].size(); ++i) {
         std::string vertical;
         for (int j = 0; j < sub_words.size(); ++j) {
@@ -35,9 +39,28 @@ void CountXmasSubWords(StringVector& sub_words, int& count) {
         }
         if (vertical == "XMAS" || vertical == "SAMX")
             count++;
+        std::cout << vertical << " ";
         vertical.clear();
     }
-    
+    std::cout << "\n";
+
+    // Count diagonal
+    std::string diagonal;
+    for (int i = 0; i < sub_words.size(); i++) {
+        diagonal += sub_words[i][i];
+    }
+    if (diagonal == "XMAS" || diagonal == "SAMX")
+        count++;
+    std::cout << "diagonal 1: " << diagonal << "\n";
+    diagonal.clear();
+
+    for (int i = sub_words.size() -1; i != 0; i--) {
+        diagonal += sub_words[i][i];
+    }
+    if (diagonal == "XMAS" || diagonal == "SAMX")
+        count++;
+    std::cout << "diagonal 2: " << diagonal << "\n";
+    diagonal.clear();
 }
 
 int CountXmas(StringVector& words) {
@@ -54,13 +77,15 @@ int CountXmas(StringVector& words) {
                 "AMXS",
                 "MSAM",
                 "XMAS" } */
-            CountXmasSubWords(sub_words, count);
 
             for (const auto& s : sub_words) {
                 std::cout << s << "\n";
             }
-            sub_words.clear();
+
+            CountXmasSubWords(sub_words, count);
             std:: cout << "\n";
+
+            sub_words.clear();
         }
     }
 
