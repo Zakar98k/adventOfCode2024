@@ -24,8 +24,35 @@ void FindXmas(int& row, int& col, StringVector& words, int& count) {
     // Start with X
     if (words[row][col] != 'X') 
         return;
-    
-    
+
+    // Right
+    int i = 0;
+    const std::string XMAS = "XMAS";
+    std::string current_word = "";
+    while (col + i < words[row].size() && i < 4) {
+        if (words[row][col + i] == XMAS[i]) {
+            current_word.push_back(words[row][col + i]);
+        } else 
+            break;
+        i++;
+    } if (current_word == XMAS) {
+        std::cout << "right found at r" << row << " c" << col << "\n";
+        count++;
+    }
+
+    // Left
+    i = 0;
+    current_word.clear();
+    while (col - i > 0 && i < 4) {
+        if (words[row][col - i] == XMAS[i]) {
+            current_word.push_back(words[row][col - i]);
+        } else 
+            break;
+        i++;
+    } if (current_word == XMAS) {
+        std::cout << "left found at r" << row << " c" << col << "\n";
+        count++;
+    }
 }
 
 int CountXmas(StringVector& words) {
@@ -35,6 +62,8 @@ int CountXmas(StringVector& words) {
             FindXmas(i, j, words, count);
         }
     }
+
+    return count;
     
 }
 
