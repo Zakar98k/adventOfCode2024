@@ -1,4 +1,4 @@
-// This iteration don't damn work lol... I thought I could do some wacky stuff
+// This iteration don't damn work lol... I thought I could do some wacky 4x4 stuff
 #include <iostream>
 #include <string>
 #include <vector>

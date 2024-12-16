@@ -20,8 +20,21 @@ void ReadInputToVector(std::string& file_name, StringVector& words) {
     }
 }
 
+void FindXmas(int& row, int& col, StringVector& words, int& count) {
+    // Start with X
+    if (words[row][col] != 'X') 
+        return;
+    
+    
+}
+
 int CountXmas(StringVector& words) {
     int count = 0;
+    for (int i = 0; i < words.size(); ++i) {
+        for (int j = 0; j < words[i].size(); ++j) {
+            FindXmas(i, j, words, count);
+        }
+    }
     
 }
 
