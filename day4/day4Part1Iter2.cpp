@@ -53,6 +53,23 @@ void FindXmas(int& row, int& col, StringVector& words, int& count) {
         std::cout << "left found at r" << row << " c" << col << "\n";
         count++;
     }
+
+    // Up
+    i = 0;
+    current_word.clear();
+    while (row - i > 0 && i < 4) {
+        if (words[row - i][col] == XMAS[i]) {
+            current_word.push_back(words[row - i][col]);
+        } else 
+            break;
+        i++;
+    } if (current_word == XMAS) {
+        std::cout << "up found at r" << row << " c" << col << "\n";
+        count++;
+    }
+
+    // Down
+    // Up left
 }
 
 int CountXmas(StringVector& words) {
