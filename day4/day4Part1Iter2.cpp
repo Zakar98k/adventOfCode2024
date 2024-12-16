@@ -151,7 +151,7 @@ int CountXmas(StringVector& words) {
 }
 
 int main() {
-    std::string file_name = "day4TestInput.txt";
+    std::string file_name = "day4Input.txt";
     StringVector words;
 
     ReadInputToVector(file_name, words);
