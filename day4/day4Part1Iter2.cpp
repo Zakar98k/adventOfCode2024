@@ -55,7 +55,7 @@ void FindXmas(int& row, int& col, StringVector& words, int& count) {
     }
 
     // Up
-    i = 0;
+    i = 1;
     current_word.clear();
     while (row - i > 0 && i < 4) {
         if (words[row - i][col] == XMAS[i]) {
@@ -63,13 +63,13 @@ void FindXmas(int& row, int& col, StringVector& words, int& count) {
         } else 
             break;
         i++;
-    } if (current_word == XMAS) {
+    } if (current_word == XMAS.substr(1)) {
         std::cout << "up found at r" << row << " c" << col << "\n";
         count++;
     }
 
     // Down
-    i = 0;
+    i = 1;
     current_word.clear();
     while (row + i < words.size() && i < 4) {
         if (words[row + i][col] == XMAS[i]) {
@@ -77,7 +77,7 @@ void FindXmas(int& row, int& col, StringVector& words, int& count) {
         } else 
             break;
         i++;
-    } if (current_word == XMAS) {
+    } if (current_word == XMAS.substr(1)) {
         std::cout << "down found at r" << row << " c" << col << "\n";
         count++;
     }
