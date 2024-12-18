@@ -9,3 +9,4 @@ I joined because I wanted to try C++ during term break. I stumble around in the 
 ## VSCode Setup
 - install `C++ Extension Pack` by Microsoft
 - configure project to compile using `g++`
+- alternatively, just install the Code Runner extension to run the .cpp file within VSCode
