@@ -33,31 +33,25 @@ void FindXmas(int& row, int& col, StringVector& words, int& count) {
         return;
     else if (sub_words[2][0] == 'X' || sub_words[2][0] == 'A' || sub_words[2][2] == 'X' || sub_words[2][2] == 'A')
         return;
-
     
     std::string diagonal;
-    for (int i = 0; i < sub_words.size(); i++) {
+    for (int i = 0; i < sub_words.size(); i++)
         diagonal.push_back(sub_words[i][i]);
-    }
-    std::cout << "d1: " << diagonal << '\n';
+    // std::cout << "d1: " << diagonal << '\n';
     if (diagonal != "SAM" && diagonal != "MAS")
         return;
 
     diagonal.clear();
-    for (int i = 0; i < sub_words.size(); i++) {
+    for (int i = 0; i < sub_words.size(); i++)
         diagonal.push_back(sub_words[i][sub_words.size()-1 - i]);
-    }
     if (diagonal != "SAM" && diagonal != "MAS")
         return;
-
-    for (auto& s : sub_words) {
-        std::cout << s << '\n';
-    }
-    std::cout << words[row + 1][col + 1] << '\n';
-    std::cout << "\n";
-    
+    // for (auto& s : sub_words) {
+    //     std::cout << s << '\n';
+    // }
+    // std::cout << words[row + 1][col + 1] << '\n';
+    // std::cout << "\n";
     count++;
-    
 }
 
 int CountXmas(StringVector& words) {
@@ -73,7 +67,7 @@ int CountXmas(StringVector& words) {
 }
 
 int main() {
-    std::string file_name = "day4TestInput.txt";
+    std::string file_name = "day4Input.txt";
     StringVector words;
 
     ReadInputToVector(file_name, words);
